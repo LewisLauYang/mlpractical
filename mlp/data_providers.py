@@ -131,6 +131,9 @@ class MNISTDataProvider(DataProvider):
         # load data from compressed numpy file
         loaded = np.load(data_path)
         inputs, targets = loaded['inputs'], loaded['targets']
+
+        # inputs, targets = self.next()
+
         inputs = inputs.astype(np.float32)
         # pass the loaded data to the parent class __init__
         super(MNISTDataProvider, self).__init__(
@@ -156,6 +159,8 @@ class MNISTDataProvider(DataProvider):
             to zero except for the column corresponding to the correct class
             which is equal to one.
         """
+        print(int_targets)
+
         one_of_k_targets = np.zeros((int_targets.shape[0], self.num_classes))
         one_of_k_targets[range(int_targets.shape[0]), int_targets] = 1
         return one_of_k_targets
