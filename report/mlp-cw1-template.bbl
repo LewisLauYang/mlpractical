@@ -1,0 +1,28 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Jin et~al.(2017)Jin, Dou, Wang, and Niu]{jin2017confusion}
+Jin, Ruochun, Dou, Yong, Wang, Yueqing, and Niu, Xin.
+\newblock Confusion graph: detecting confusion communities in large scale image
+  classification.
+\newblock In \emph{Proceedings of the 26th International Joint Conference on
+  Artificial Intelligence (IJCAI’17)}, pp.\  1980--1986, 2017.
+
+\bibitem[Langley(2000)]{langley00}
+Langley, P.
+\newblock Crafting papers on machine learning.
+\newblock In Langley, Pat (ed.), \emph{Proceedings of the 17th International
+  Conference on Machine Learning (ICML 2000)}, pp.\  1207--1216, Stanford, CA,
+  2000. Morgan Kaufmann.
+
+\bibitem[Loshchilov \& Hutter(2017)Loshchilov and Hutter]{loshchilov2018fixing}
+Loshchilov, Ilya and Hutter, Frank.
+\newblock Fixing weight decay regularization in {Adam}.
+\newblock \emph{arXiv preprint arXiv:1711.05101}, 2017.
+\newblock URL \url{https://arxiv.org/abs/1711.05101}.
+
+\end{thebibliography}
