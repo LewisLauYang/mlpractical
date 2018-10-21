@@ -48,6 +48,7 @@ class GradientDescentLearningRule(object):
                 be updated *in-place* to avoid reallocating arrays on each
                 update.
         """
+        print(params)
         self.params = params
 
     def reset(self):
@@ -429,15 +430,17 @@ class RMSPropLearningRule(GradientDescentLearningRule):
                 update.
         """
         super(RMSPropLearningRule, self).initialise(params)
-
-        raise NotImplementedError
+        self.S = []
+        for param in self.params:
+            self.S.append(np.zeros_like(param))
 
     def reset(self):
         """Resets any additional state variables to their initial values.
         For this learning rule this corresponds to zeroing all gradient
         second moment estimates.
         """
-        raise NotImplementedError
+        for s in self.S:
+            s *= 0.
 
     def update_params(self, grads_wrt_params):
         """Applies a single update to all parameters.
@@ -448,4 +451,13 @@ class RMSPropLearningRule(GradientDescentLearningRule):
                 with respect to each of the parameters passed to `initialise`
                 previously, with this list expected to be in the same order.
         """
-        raise NotImplementedError
+
+        for param, s, grad in zip(self.params, self.S, grads_wrt_params):
+            # this creates a local variable and does not change the value in the array
+            # s = (self.beta * s) + (1 - self.beta) * (grad ** 2)
+            s *= self.beta
+            s += (1. - self.beta) * grad ** 2
+            param -= (self.learning_rate * grad /
+                      (s + self.epsilon) ** 0.5)
+
+
