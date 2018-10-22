@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="798229a4-db9b-4ccd-be63-92f035786265" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlp/learning_rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlp/learning_rules.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -80,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mlp/layers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="299" selection-start-line="299" selection-end-line="299" />
+            <state relative-caret-position="189">
+              <caret line="317" column="7" selection-start-line="317" selection-start-column="7" selection-end-line="317" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -101,8 +100,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mlp/learning_rules.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="460" lean-forward="true" selection-start-line="460" selection-end-line="460" />
+            <state relative-caret-position="269">
+              <caret line="419" column="22" lean-forward="true" selection-start-line="419" selection-start-column="22" selection-end-line="419" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -171,6 +170,7 @@
       <find>self.model</find>
       <find>learning_rule</find>
       <find>initialise</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -219,6 +219,12 @@
               <item name="mlp2018" type="b2602c69:ProjectViewProjectNode" />
               <item name="mlp2018" type="462c0819:PsiDirectoryNode" />
               <item name="mlp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mlp2018" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mlp2018" type="462c0819:PsiDirectoryNode" />
+              <item name="mlp" type="462c0819:PsiDirectoryNode" />
+              <item name="schedulers.py" type="8704e2dd:PyFileNode" />
             </path>
           </expand>
           <select />
@@ -352,7 +358,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mlp/learning_rules.py</url>
-          <line>51</line>
+          <line>50</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
@@ -408,13 +414,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mlp/layers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="299" selection-start-line="299" selection-end-line="299" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mlp/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="599">
@@ -452,10 +451,17 @@
     <entry file="file://$PROJECT_DIR$/mlp/testDataProviders.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/mlp/layers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="317" column="7" selection-start-line="317" selection-start-column="7" selection-end-line="317" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mlp/learning_rules.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="460" lean-forward="true" selection-start-line="460" selection-end-line="460" />
+        <state relative-caret-position="269">
+          <caret line="419" column="22" lean-forward="true" selection-start-line="419" selection-start-column="22" selection-end-line="419" selection-end-column="22" />
         </state>
       </provider>
     </entry>
