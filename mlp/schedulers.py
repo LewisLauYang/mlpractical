@@ -82,6 +82,8 @@ class CosineAnnealingWithWarmRestarts(object):
 
         learning_rule.learning_rate = self.learning_rate
 
+        self.total_epochs_per_period *= self.period_iteration_expansion_factor
+
         return self.learning_rate
 
         # raise NotImplementedError
