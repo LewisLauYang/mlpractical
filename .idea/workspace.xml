@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="798229a4-db9b-4ccd-be63-92f035786265" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mlp/myTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mlp2018.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mlp2018.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlp/learning_rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlp/learning_rules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/Coursework_1-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/Coursework_1-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/Coursework_1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/Coursework_1.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/mlp-cw1-template.aux" beforeDir="false" afterPath="$PROJECT_DIR$/report/mlp-cw1-template.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/mlp-cw1-template.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/report/mlp-cw1-template.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/mlp-cw1-template.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/report/mlp-cw1-template.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/mlp-cw1-template.tex" beforeDir="false" afterPath="$PROJECT_DIR$/report/mlp-cw1-template.tex" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,22 +41,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="11" />
+          <entry key="py" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="11" />
+          <entry key="Python" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="174" />
+          <entry key="py" value="179" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="174" />
+          <entry key="Python" value="179" />
         </counts>
       </usages-collector>
     </session>
@@ -73,17 +64,17 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mlp/__init__.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/mlp/data_providers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="246" column="31" lean-forward="true" selection-start-line="246" selection-start-column="31" selection-end-line="246" selection-end-column="31" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mlp/data_providers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3450">
-              <caret line="234" column="29" selection-start-line="234" selection-start-column="29" selection-end-line="234" selection-end-column="29" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/mlp/testDataProviders.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -110,8 +101,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mlp/learning_rules.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="427" column="42" selection-start-line="427" selection-start-column="42" selection-end-line="427" selection-end-column="42" />
+            <state relative-caret-position="226">
+              <caret line="460" lean-forward="true" selection-start-line="460" selection-end-line="460" />
             </state>
           </provider>
         </entry>
@@ -131,8 +122,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mlp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1215">
-              <caret line="81" column="32" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="32" />
+            <state relative-caret-position="199">
+              <caret line="82" selection-start-line="82" selection-end-line="82" />
             </state>
           </provider>
         </entry>
@@ -397,13 +388,6 @@
     <entry file="file://$PROJECT_DIR$/mlp/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/mlp/data_providers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3450">
-          <caret line="234" column="29" selection-start-line="234" selection-start-column="29" selection-end-line="234" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mlp/errors.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -441,13 +425,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mlp/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="81" column="32" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mlp/myTest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -458,10 +435,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mlp/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="82" selection-start-line="82" selection-end-line="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mlp/data_providers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="246" column="31" lean-forward="true" selection-start-line="246" selection-start-column="31" selection-end-line="246" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mlp/testDataProviders.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/mlp/learning_rules.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="427" column="42" selection-start-line="427" selection-start-column="42" selection-end-line="427" selection-end-column="42" />
+        <state relative-caret-position="226">
+          <caret line="460" lean-forward="true" selection-start-line="460" selection-end-line="460" />
         </state>
       </provider>
     </entry>
