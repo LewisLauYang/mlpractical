@@ -10,6 +10,7 @@ import logging
 from collections import OrderedDict
 import numpy as np
 import tqdm
+from mlp.schedulers import CosineAnnealingWithWarmRestarts
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +19,7 @@ class Optimiser(object):
     """Basic model optimiser."""
 
     def __init__(self, model, error, learning_rule, train_dataset,
-                 valid_dataset=None, data_monitors=None, notebook=False):
+                 valid_dataset=None, data_monitors=None, notebook=False, scheduler=None):
         """Create a new optimiser instance.
 
         Args:
@@ -36,6 +37,7 @@ class Optimiser(object):
         """
         self.model = model
         self.error = error
+        self.scheduler = scheduler
         self.learning_rule = learning_rule
         self.learning_rule.initialise(self.model.params)
         self.train_dataset = train_dataset
@@ -135,6 +137,14 @@ class Optimiser(object):
             progress_bar.set_description("Exp Prog")
             for epoch in range(1, num_epochs + 1):
                 start_time = time.time()
+
+                if self.scheduler != None:
+                    learning_rate = self.schedulers.update_learning_rule(learning_rule=self.learning_rule,
+                                                                    epoch_number=epoch - 1)
+                    print("learning_rate", learning_rate)
+                    print("epoch", epoch)
+                    self.learning_rule.learning_rate = learning_rate
+
                 self.do_training_epoch()
                 epoch_time = time.time()- start_time
                 if epoch % stats_interval == 0:

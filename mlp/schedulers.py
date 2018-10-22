@@ -65,7 +65,26 @@ class CosineAnnealingWithWarmRestarts(object):
                 attributes of this object.
             epoch_number: Integer index of training epoch about to be run.
         """
-        raise NotImplementedError
+        
+        discountNumber = int(epoch_number / self.total_epochs_per_period)
+
+        max_learning_rate = self.max_learning_rate * pow(self.max_learning_rate_discount_factor,discountNumber)
+
+        i = epoch_number % self.total_epochs_per_period
+
+        # print('i', i)
+        x = 0
+        if i == 0:
+            x = 0
+        else:
+            x = i / self.total_epochs_per_period * np.pi
+        self.learning_rate = self.min_learning_rate + 0.5 * (max_learning_rate - self.min_learning_rate) * (1 + np.cos(x))
+
+        learning_rule.learning_rate = self.learning_rate
+
+        return self.learning_rate
+
+        # raise NotImplementedError
 
 
 
