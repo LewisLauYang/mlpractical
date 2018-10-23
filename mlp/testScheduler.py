@@ -9,7 +9,7 @@ from mlp.layers import AffineLayer, SoftmaxLayer, SigmoidLayer, ReluLayer, Leaky
 from mlp.errors import CrossEntropySoftmaxError
 from mlp.models import MultipleLayerModel
 from mlp.initialisers import ConstantInit, GlorotUniformInit
-from mlp.learning_rules import AdamLearningRule,GradientDescentLearningRule
+from mlp.learning_rules import AdamLearningRule,GradientDescentLearningRule,RMSPropLearningRule
 from mlp.optimisers import Optimiser
 from mlp.schedulers import CosineAnnealingWithWarmRestarts
 
@@ -92,7 +92,7 @@ sgd_scheduler = CosineAnnealingWithWarmRestarts(min_learning_rate=0.0001, max_le
 error = CrossEntropySoftmaxError()
 
 # Use a basic gradient descent learning rule
-learning_rule = GradientDescentLearningRule(learning_rate=learning_rate)
+learning_rule = RMSPropLearningRule(learning_rate=learning_rate)
 
 #Remember to use notebook=False when you write a script to be run in a terminal
 _ = train_model_and_plot_stats(
