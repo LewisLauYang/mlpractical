@@ -321,7 +321,10 @@ class AdamLearningRuleWithWeightDecay(GradientDescentLearningRule):
         For this learning rule this corresponds to zeroing the estimates of
         the first and second moments of the gradients.
         """
-        raise NotImplementedError
+        for mom_1, mom_2 in zip(self.moms_1, self.moms_2):
+            mom_1 *= 0.
+            mom_2 *= 0.
+        self.step_count = 0
 
     def update_params(self, grads_wrt_params):
         """Applies a single update to all parameters.
@@ -337,7 +340,19 @@ class AdamLearningRuleWithWeightDecay(GradientDescentLearningRule):
         # ηt = learning_rate / initial_learning_rate
 
 
-        raise NotImplementedError
+        for param, mom_1, mom_2, grad in zip(
+                self.params, self.moms_1, self.moms_2, grads_wrt_params):
+            mom_1 *= self.beta_1
+            mom_1 += (1. - self.beta_1) * grad
+            mom_2 *= self.beta_2
+            mom_2 += (1. - self.beta_2) * grad ** 2
+            alpha_t = (
+                    self.learning_rate *
+                    (1. - self.beta_2 ** (self.step_count + 1)) ** 0.5 /
+                    (1. - self.beta_1 ** (self.step_count + 1))
+            )
+            param -= alpha_t * (mom_1 / (mom_2 ** 0.5 + self.epsilon) + self.weight_decay * param)
+        self.step_count += 1
 
 
 class AdaGradLearningRule(GradientDescentLearningRule):
