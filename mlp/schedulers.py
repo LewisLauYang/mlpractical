@@ -82,7 +82,8 @@ class CosineAnnealingWithWarmRestarts(object):
 
         learning_rule.learning_rate = self.learning_rate
 
-        self.total_epochs_per_period *= self.period_iteration_expansion_factor
+
+        self.total_epochs_per_period = self.total_epochs_per_period * pow(self.period_iteration_expansion_factor,discountNumber)
 
         return self.learning_rate
 
