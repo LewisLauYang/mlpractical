@@ -55,6 +55,9 @@ class CosineAnnealingWithWarmRestarts(object):
         self.max_learning_rate_discount_factor = max_learning_rate_discount_factor
         self.period_iteration_expansion_factor = period_iteration_expansion_factor
 
+        self.origin_total_epochs_per_period = self.total_epochs_per_period
+
+
 
     def update_learning_rule(self, learning_rule, epoch_number):
         """Update the hyperparameters of the learning rule.
@@ -67,14 +70,27 @@ class CosineAnnealingWithWarmRestarts(object):
                 attributes of this object.
             epoch_number: Integer index of training epoch about to be run.
         """
-        
-        discountNumber = int(epoch_number / self.total_epochs_per_period)
 
-        max_learning_rate = self.max_learning_rate * pow(self.max_learning_rate_discount_factor,discountNumber)
+        #calculate current period
+        current_period = -1
+        nextPeriodTotalNumber = 0
+        current_epoch_number = 0
 
-        i = epoch_number % self.total_epochs_per_period
+        while epoch_number >= nextPeriodTotalNumber:
+            nextPeriodTotalNumber += self.origin_total_epochs_per_period * pow(self.period_iteration_expansion_factor,current_period)
+            current_period += 1
 
-        # print('i', i)
+        #calculate the index of the epoch number in the period
+        previousPeriodTotalNumber = nextPeriodTotalNumber - self.origin_total_epochs_per_period * pow(self.period_iteration_expansion_factor,current_period)
+        current_epoch_number = epoch_number - previousPeriodTotalNumber
+
+        max_learning_rate = self.max_learning_rate * pow(self.max_learning_rate_discount_factor,current_period)
+
+        i = current_epoch_number % self.total_epochs_per_period
+
+        self.total_epochs_per_period = self.total_epochs_per_period * pow(self.period_iteration_expansion_factor,
+                                                                          current_period)
+
         x = 0
         if i == 0:
             x = 0
@@ -85,11 +101,10 @@ class CosineAnnealingWithWarmRestarts(object):
         learning_rule.learning_rate = self.learning_rate
 
 
-        self.total_epochs_per_period = self.total_epochs_per_period * pow(self.period_iteration_expansion_factor,discountNumber)
+
 
         return self.learning_rate
 
-        # raise NotImplementedError
 
 
 
