@@ -89,10 +89,12 @@ class CosineAnnealingWithWarmRestarts(object):
 
         max_learning_rate = self.max_learning_rate * pow(self.max_learning_rate_discount_factor,current_period)
 
+        self.total_epochs_per_period = self.origin_total_epochs_per_period * pow(self.period_iteration_expansion_factor,
+                                                                          current_period)
+
         i = current_epoch_number % self.total_epochs_per_period
 
-        self.total_epochs_per_period = self.total_epochs_per_period * pow(self.period_iteration_expansion_factor,
-                                                                          current_period)
+
 
         x = 0
         if i == 0:
