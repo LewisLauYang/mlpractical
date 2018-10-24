@@ -71,14 +71,17 @@ class CosineAnnealingWithWarmRestarts(object):
             epoch_number: Integer index of training epoch about to be run.
         """
 
-        #calculate current period
-        current_period = -1
+        #calculate current period,
+        current_period = 0
         nextPeriodTotalNumber = 0
         current_epoch_number = 0
 
         while epoch_number >= nextPeriodTotalNumber:
             nextPeriodTotalNumber += self.origin_total_epochs_per_period * pow(self.period_iteration_expansion_factor,current_period)
             current_period += 1
+
+        #because my current_period start with 0
+        current_period -= 1
 
         #calculate the index of the epoch number in the period
         previousPeriodTotalNumber = nextPeriodTotalNumber - self.origin_total_epochs_per_period * pow(self.period_iteration_expansion_factor,current_period)
