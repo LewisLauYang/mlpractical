@@ -10,6 +10,10 @@
 
 %% REPLACE this with your student number
 \def\studentNumber{sXXXXXXX}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{amsmath}
 
 \begin{document} 
 
@@ -32,6 +36,187 @@ This document provides a template for the MLP coursework 1 report.  This templat
 The introduction should place your work in context, giving the overall motivation for the work, and clearly outlining the research questions you have explored -- in this case questions arising from an investigation of learning rate algorithms, learning rate schedulers, and regularization/weight decay.  This section should also include a concise description of the Balanced EMNIST task and  data -- be precise: for example state the size of the training, validation, and test sets.
 
 \section{Baseline systems} 
+
+
+In this section, in order to get the best performance of stochastic gradient descent (SGD) in 2-5 hidden layers as the baseline, I debugged the learning rate hyperparameter. Firstly I will compare these systems using the valid data set and find the best learning rate.
+\begin{table}[htbp]
+  \centering
+  \caption{Add caption}
+    \begin{tabular}{|r|r|r|r|r|}
+    \toprule
+    \multicolumn{5}{|p{25em}|}{2 Hidden Layers} \\
+    \midrule
+    \multicolumn{1}{|r|}{\multirow{2}[2]{*}{learning\_rate}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{acc(train)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{acc(valid)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{error(train)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{error(valid)}} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.1} & \multirow{2}[2]{*}{9.32E-01} & \multirow{2}[2]{*}{8.15E-01} & \multirow{2}[2]{*}{1.72E-01} & \multirow{2}[2]{*}{8.84E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.05} & \multirow{2}[2]{*}{9.24E-01} & \multirow{2}[2]{*}{8.28E-01} & \multirow{2}[2]{*}{2.01E-01} & \multirow{2}[2]{*}{6.45E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.01} & \multirow{2}[2]{*}{8.71E-01} & \multirow{2}[2]{*}{8.35E-01} & \multirow{2}[2]{*}{3.84E-01} & \multirow{2}[2]{*}{5.12E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.0075} & \multirow{2}[2]{*}{8.59E-01} & \multirow{2}[2]{*}{8.30E-01} & \multirow{2}[2]{*}{4.27E-01} & \multirow{2}[2]{*}{5.19E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.005} & \multirow{2}[2]{*}{8.44E-01} & \multirow{2}[2]{*}{8.22E-01} & \multirow{2}[2]{*}{4.88E-01} & \multirow{2}[2]{*}{5.59E-01} \\
+          &       &       &       &  \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:addlabel}%
+\end{table}%
+\begin{table}[htbp]
+  \centering
+  \caption{Add caption}
+    \begin{tabular}{|r|r|r|r|r|}
+    \toprule
+    \multicolumn{5}{|p{25em}|}{3 Hidden Layers} \\
+    \midrule
+    \multicolumn{1}{|r|}{\multirow{2}[2]{*}{learning\_rate}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{acc(train)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{acc(valid)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{error(train)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{error(valid)}} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.1} & \multirow{2}[2]{*}{9.32E-01} & \multirow{2}[2]{*}{8.15E-01} & \multirow{2}[2]{*}{1.72E-01} & \multirow{2}[2]{*}{8.84E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.05} & \multirow{2}[2]{*}{9.24E-01} & \multirow{2}[2]{*}{8.28E-01} & \multirow{2}[2]{*}{2.01E-01} & \multirow{2}[2]{*}{6.45E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.01} & \multirow{2}[2]{*}{8.71E-01} & \multirow{2}[2]{*}{8.35E-01} & \multirow{2}[2]{*}{3.84E-01} & \multirow{2}[2]{*}{5.12E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.0075} & \multirow{2}[2]{*}{8.81E-01} & \multirow{2}[2]{*}{8.42E-01} & \multirow{2}[2]{*}{3.50E-01} & \multirow{2}[2]{*}{4.92E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.005} & \multirow{2}[2]{*}{8.44E-01} & \multirow{2}[2]{*}{8.22E-01} & \multirow{2}[2]{*}{4.88E-01} & \multirow{2}[2]{*}{5.59E-01} \\
+          &       &       &       &  \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:addlabel}%
+\end{table}%
+\begin{table}[htbp]
+  \centering
+  \caption{Add caption}
+    \begin{tabular}{|r|r|r|r|r|}
+    \toprule
+    \multicolumn{5}{|p{25em}|}{4 Hidden Layers} \\
+    \midrule
+    \multicolumn{1}{|r|}{\multirow{2}[2]{*}{learning\_rate}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{acc(train)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{acc(valid)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{error(train)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{error(valid)}} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.1} & \multirow{2}[2]{*}{9.29E-01} & \multirow{2}[2]{*}{8.17E-01} & \multirow{2}[2]{*}{1.73E-01} & \multirow{2}[2]{*}{9.84E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.05} & \multirow{2}[2]{*}{9.36E-01} & \multirow{2}[2]{*}{8.27E-01} & \multirow{2}[2]{*}{1.58E-01} & \multirow{2}[2]{*}{8.94E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.01} & \multirow{2}[2]{*}{9.00E-01} & \multirow{2}[2]{*}{8.39E-01} & \multirow{2}[2]{*}{2.81E-01} & \multirow{2}[2]{*}{5.18E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.0075} & \multirow{2}[2]{*}{8.88E-01} & \multirow{2}[2]{*}{8.42E-01} & \multirow{2}[2]{*}{3.16E-01} & \multirow{2}[2]{*}{4.89E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.005} & \multirow{2}[2]{*}{8.65E-01} & \multirow{2}[2]{*}{8.28E-01} & \multirow{2}[2]{*}{3.92E-01} & \multirow{2}[2]{*}{5.27E-01} \\
+          &       &       &       &  \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:addlabel}%
+\end{table}%
+\begin{table}[htbp]
+  \centering
+  \caption{Add caption}
+    \begin{tabular}{|r|r|r|r|r|}
+    \toprule
+    \multicolumn{5}{|p{25em}|}{5 Hidden Layers} \\
+    \midrule
+    \multicolumn{1}{|r|}{\multirow{2}[2]{*}{learning\_rate}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{acc(train)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{acc(valid)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{error(train)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{error(valid)}} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.1} & \multirow{2}[2]{*}{9.27E-01} & \multirow{2}[2]{*}{8.17E-01} & \multirow{2}[2]{*}{1.81E-01} & \multirow{2}[2]{*}{9.47E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.05} & \multirow{2}[2]{*}{9.36E-01} & \multirow{2}[2]{*}{8.29E-01} & \multirow{2}[2]{*}{1.57E-01} & \multirow{2}[2]{*}{8.82E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.01} & \multirow{2}[2]{*}{8.99E-01} & \multirow{2}[2]{*}{8.32E-01} & \multirow{2}[2]{*}{2.70E-01} & \multirow{2}[2]{*}{5.47E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.0075} & \multirow{2}[2]{*}{8.88E-01} & \multirow{2}[2]{*}{8.32E-01} & \multirow{2}[2]{*}{3.09E-01} & \multirow{2}[2]{*}{5.41E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.005} & \multirow{2}[2]{*}{8.75E-01} & \multirow{2}[2]{*}{8.33E-01} & \multirow{2}[2]{*}{3.58E-01} & \multirow{2}[2]{*}{5.13E-01} \\
+          &       &       &       &  \\
+    \midrule
+    \multirow{2}[2]{*}{0.004} & \multirow{2}[2]{*}{8.63E-01} & \multirow{2}[2]{*}{8.27E-01} & \multirow{2}[2]{*}{3.98E-01} & \multirow{2}[2]{*}{5.35E-01} \\
+          &       &       &       &  \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:addlabel}%
+\end{table}%
+
+From the data in the table above, we compare the respective acc(valid) of  2-5 hidden layers, we can get the best learning rate as shown in the following table.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Add caption}
+    \begin{tabular}{|c|c|}
+    \toprule
+    \multicolumn{2}{|p{23.92em}}{the best learning rate for 2-5 Hidden Layers} \\
+    \midrule
+    \multicolumn{1}{|c|}{\multirow{2}[2]{*}{number of Hidden layers}} & \multicolumn{1}{c|}{\multirow{2}[2]{*}{the best learning rate}} \\
+          &  \\
+    \midrule
+    \multicolumn{1}{|c|}{\multirow{2}[2]{*}{2 Hidden layers}} & \multirow{2}[2]{*}{1.00E-02} \\
+          &  \\
+    \midrule
+    \multicolumn{1}{|c|}{\multirow{2}[2]{*}{3 Hidden layers}} & \multirow{2}[2]{*}{7.50E-03} \\
+          &  \\
+    \midrule
+    \multicolumn{1}{|c|}{\multirow{2}[2]{*}{3 Hidden layers}} & \multirow{2}[2]{*}{7.50E-03} \\
+          &  \\
+    \midrule
+    \multicolumn{1}{|c|}{\multirow{2}[2]{*}{4 Hidden layers}} & \multirow{2}[2]{*}{5.00E-03} \\
+          &  \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:addlabel}%
+\end{table}%
+
+
+Then I use the test data to compare the accuracy of these best systems.
+
+% Table generated by Excel2LaTeX from sheet 'Sheet3'
+\begin{table}[htbp]
+  \centering
+  \caption{Add caption}
+    \begin{tabular}{|r|r|r|}
+    \toprule
+    \multicolumn{3}{|p{23.75em}}{SGD for test set} \\
+    \midrule
+    \multicolumn{1}{|l|}{\multirow{2}[2]{*}{Layers(learning\_rate)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{acc\newline{}(train)}} & \multicolumn{1}{r|}{\multirow{2}[2]{*}{acc\newline{}(test)}} \\
+    \multicolumn{1}{|l|}{} &       &  \\
+    \midrule
+    \multicolumn{1}{|r|}{\multirow{2}[2]{*}{2 Hidden Layers(0.01)}} & \multirow{2}[2]{*}{8.71E-01} & \multirow{2}[2]{*}{8.23E-01} \\
+          &       &  \\
+    \midrule
+    \multicolumn{1}{|r|}{\multirow{2}[2]{*}{3 Hidden Layers(7.5e-3)}} & \multirow{2}[2]{*}{8.81E-01} & \multirow{2}[2]{*}{8.34E-01} \\
+          &       &  \\
+    \midrule
+    \multicolumn{1}{|r|}{\multirow{2}[2]{*}{4 Hidden Layers(7.5e-3)}} & \multirow{2}[2]{*}{8.88E-01} & \multirow{2}[2]{*}{8.31E-01} \\
+          &       &  \\
+    \midrule
+    \multicolumn{1}{|r|}{\multirow{2}[2]{*}{5 Hidden Layers(5e-3)}} & \multirow{2}[2]{*}{8.75E-01} & \multirow{2}[2]{*}{8.22E-01} \\
+          &       &  \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:addlabel}%
+\end{table}%
+
+The accuracy rate is the highest and 3 hidden layers and 4 hidden layers, the accuracy rate is about 0.83, and the accuracy of 2 hidden layers and 5 hidden layers is only about 0.82. Compared with the valid data, these systems have a 1% reduction in the accuracy of the test data.
+
+In the following experiments, I will use this part of the best 3 hidden SGD as the baseline to compare the performance of subsequent algorithms.
+
 
 In this section you should report your baseline experiments for EMNIST.  No need for theoretical explanations of things covered in the course, but if you go beyond what was covered please explain what you did with references to relevant paper(s) if appropriate.   In this section you should aim to cover the both the ``what'' and the ``why'': \emph{what} you did, giving sufficient information (hyperparameter settings, etc.) so that someone else (e.g. another student on the course) could reproduce your results; and \emph{why} you performed the experiments you are reporting - what you are aiming to discover what is the motivation for the particular experiments you undertook. You should also provide some discussion and interpretation of your results.  
 
@@ -101,6 +286,33 @@ Bayes on various data sets.}
 \section{Learning algorithms -- RMSProp and Adam}
 In this section you should compare RMSProp and Adam with gradient descent, introducing these learning rules either as equations or as algorithmic pseudocode.  If you present the different approaches as algorithms, you can use the \verb+algorithm+ and \verb+algorithmic+ environments to format pseudocode (for instance, Algorithm~\ref{alg:example}). These require the corresponding style files, \verb+algorithm.sty+ and \verb+algorithmic.sty+ which are supplied with this package. 
 
+\textbf{SGD algorithm equation:}
+\begin{equation}
+\begin{aligned}
+\begin{array}{l}g_t\leftarrow\nabla J_i\left(\theta_{t-1}\right)\end{array}\\
+\begin{array}{l}\theta_t\leftarrow\end{array}\theta_{t-1}\;-\;\eta g_t
+\end{aligned}
+\end{equation}
+
+\textbf{RMSProp algorithm equation:}
+\begin{equation}
+\begin{aligned}
+\begin{array}{l}g_t\leftarrow\nabla J_i\left(\theta_{t-1}\right)\end{array}\\
+\begin{array}{l}G_t\leftarrow\gamma G_t+\left(1-\gamma\right)g_t\odot g_t\end{array}\\
+\begin{array}{l}\theta_t\leftarrow\theta_{t-1}-\frac\eta{\sqrt{G_t+\in}}\odot g_t\end{array}
+\end{aligned}
+\end{equation}
+
+\textbf{Adam algorithm equation:}
+\begin{equation}
+\begin{aligned}
+\begin{array}{l}g_t\leftarrow\nabla J_i\left(\theta_{t-1}\right)\end{array}\\
+\begin{array}{l}G_t\leftarrow\gamma G_t+\left(1-\gamma\right)g_t\odot g_t\end{array}\\
+\begin{array}{l}\theta_t\leftarrow\theta_{t-1}-\frac\eta{\sqrt{G_t+\in}}\odot g_t\end{array}
+\end{aligned}
+\end{equation}
+
+
 \begin{algorithm}[ht]
 \begin{algorithmic}
    \STATE {\bfseries Input:} data $x_i$, size $m$
@@ -117,6 +329,10 @@ In this section you should compare RMSProp and Adam with gradient descent, intro
   \caption{Bubble Sort}
   \label{alg:example}
 \end{algorithm}
+
+
+
+
 
 You should, in your own words, explain what the different learning rules do, and how they differ.  You should then present your experiments and results, comparing and contrasting stochastic gradient descent, RMSProp, and Adam.  As before concentrate on the ``what'' (remember give enough information so someone can reproduce your experiments), the ``why'' (why did you choose the experiments that you performed -- you may have been motivated by your earlier results, by the literature, or by a specific research question), and the interpretation of your results.
 
