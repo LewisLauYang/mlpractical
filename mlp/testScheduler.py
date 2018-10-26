@@ -67,7 +67,7 @@ valid_data = EMNISTDataProvider('valid', batch_size=batch_size, rng=rng)
 
 
 #setup hyperparameters
-learning_rate = 0.01
+learning_rate = 0.0001
 num_epochs = 100
 stats_interval = 1
 input_dim, output_dim, hidden_dim = 784, 47, 100
@@ -84,7 +84,7 @@ model = MultipleLayerModel([
     AffineLayer(hidden_dim, output_dim, weights_init, biases_init)
 ])
 
-sgd_scheduler = CosineAnnealingWithWarmRestarts(min_learning_rate=0.0001, max_learning_rate=0.01,
+sgd_scheduler = CosineAnnealingWithWarmRestarts(min_learning_rate=0.03, max_learning_rate=0,
                                                        total_iters_per_period=25,
                                                        max_learning_rate_discount_factor=0.9,
                                                        period_iteration_expansion_factor=3.0)
@@ -92,7 +92,7 @@ sgd_scheduler = CosineAnnealingWithWarmRestarts(min_learning_rate=0.0001, max_le
 error = CrossEntropySoftmaxError()
 
 # Use a basic gradient descent learning rule
-learning_rule = RMSPropLearningRule(learning_rate=learning_rate)
+learning_rule = AdamLearningRule(learning_rate=learning_rate)
 
 #Remember to use notebook=False when you write a script to be run in a terminal
 _ = train_model_and_plot_stats(

@@ -36,6 +36,7 @@ class GradientDescentLearningRule(object):
 
         """
         assert learning_rate > 0., 'learning_rate should be positive.'
+        self.eta = -1
         self.learning_rate = learning_rate
 
     def initialise(self, params):
@@ -70,7 +71,10 @@ class GradientDescentLearningRule(object):
                 previously, with this list expected to be in the same order.
         """
         for param, grad in zip(self.params, grads_wrt_params):
-            param -= self.learning_rate * grad
+            if self.eta > 0:
+                param -= self.eta * (self.learning_rate * grad)
+            else:
+                param -= self.learning_rate * grad
 
 
 class MomentumLearningRule(GradientDescentLearningRule):
@@ -343,8 +347,13 @@ class AdamLearningRuleWithWeightDecay(GradientDescentLearningRule):
             mom_1 += (1. - self.beta_1) * grad
             mom_2 *= self.beta_2
             mom_2 += (1. - self.beta_2) * grad ** 2
-            alpha_t = (self.learning_rate * (1. - self.beta_2 ** (self.step_count + 1)) ** 0.5 / (1. - self.beta_1 ** (self.step_count + 1)))
-            param -= alpha_t * (mom_1 / (mom_2 ** 0.5 + self.epsilon) + self.weight_decay * param)
+            if self.eta < 0:
+                alpha_t = (self.learning_rate * (1. - self.beta_2 ** (self.step_count + 1)) ** 0.5 / (1. - self.beta_1 ** (self.step_count + 1)))
+                param -= alpha_t * (mom_1 / (mom_2 ** 0.5 + self.epsilon) + self.weight_decay * param)
+            else:
+                alpha_t = self.eta(self.learning_rate * (1. - self.beta_2 ** (self.step_count + 1)) ** 0.5 / (
+                            1. - self.beta_1 ** (self.step_count + 1)))
+                param -= alpha_t * (mom_1 / (mom_2 ** 0.5 + self.epsilon) + self.weight_decay * param)
         self.step_count += 1
 
 

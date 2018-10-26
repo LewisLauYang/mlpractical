@@ -139,11 +139,11 @@ class Optimiser(object):
                 start_time = time.time()
 
                 if self.scheduler != None:
-                    learning_rate = self.scheduler.update_learning_rule(learning_rule=self.learning_rule,
+                    eta = self.scheduler.update_learning_rule(learning_rule=self.learning_rule,
                                                                     epoch_number=epoch - 1)
-                    print("learning_rate", learning_rate)
+                    print("learning_rate", eta)
                     print("epoch", epoch)
-                    self.learning_rule.learning_rate = learning_rate
+                    self.learning_rule.eta = eta
 
                 self.do_training_epoch()
                 epoch_time = time.time()- start_time

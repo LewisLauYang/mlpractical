@@ -103,12 +103,9 @@ class CosineAnnealingWithWarmRestarts(object):
             x = i / self.total_epochs_per_period * np.pi
         self.learning_rate = self.min_learning_rate + 0.5 * (max_learning_rate - self.min_learning_rate) * (1 + np.cos(x))
 
-        learning_rule.learning_rate = self.learning_rate
+        learning_rule.eta = self.learning_rate
 
-
-
-
-        return self.learning_rate
+        return learning_rule.eta
 
 
 
