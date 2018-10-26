@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="798229a4-db9b-4ccd-be63-92f035786265" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/mlp/learning_rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlp/learning_rules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlp/optimisers.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlp/optimisers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlp/schedulers.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlp/schedulers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlp/testScheduler.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlp/testScheduler.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,12 +13,12 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/mlp2018$testFor.coverage" NAME="testFor Coverage Results" MODIFIED="1540251304545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mlp" />
-    <SUITE FILE_PATH="coverage/mlp2018$testScheduler.coverage" NAME="testScheduler Coverage Results" MODIFIED="1540560715691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mlp" />
+    <SUITE FILE_PATH="coverage/mlp2018$testScheduler.coverage" NAME="testScheduler Coverage Results" MODIFIED="1540561880544" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mlp" />
     <SUITE FILE_PATH="coverage/mlp2018$myTest.coverage" NAME="myTest Coverage Results" MODIFIED="1540144945554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mlp" />
     <SUITE FILE_PATH="coverage/mlp2018$learning_rules.coverage" NAME="learning_rules Coverage Results" MODIFIED="1540425346744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mlp" />
     <SUITE FILE_PATH="coverage/mlp2018$testAdamWeightDecay.coverage" NAME="testAdamWeightDecay Coverage Results" MODIFIED="1540424645963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mlp" />
     <SUITE FILE_PATH="coverage/mlp2018$CosineAnnealingTest.coverage" NAME="CosineAnnealingTest Coverage Results" MODIFIED="1540426880679" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mlp" />
-    <SUITE FILE_PATH="coverage/mlp2018$schedulers.coverage" NAME="schedulers Coverage Results" MODIFIED="1540390126288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mlp" />
+    <SUITE FILE_PATH="coverage/mlp2018$schedulers.coverage" NAME="schedulers Coverage Results" MODIFIED="1540561392582" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mlp" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -59,12 +57,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1232" />
+          <entry key="py" value="1256" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1232" />
+          <entry key="Python" value="1256" />
         </counts>
       </usages-collector>
     </session>
@@ -100,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mlp/schedulers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-917">
-              <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+            <state relative-caret-position="290">
+              <caret line="101" column="13" lean-forward="true" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -109,8 +107,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mlp/learning_rules.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1650">
-              <caret line="343" column="45" lean-forward="true" selection-start-line="343" selection-start-column="45" selection-end-line="343" selection-end-column="45" />
+            <state relative-caret-position="218">
+              <caret line="355" column="36" selection-start-line="355" selection-start-column="36" selection-end-line="355" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -118,8 +116,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mlp/testScheduler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="98" column="28" selection-start-line="98" selection-start-column="28" selection-end-line="98" selection-end-column="28" />
+            <state relative-caret-position="338">
+              <caret line="94" column="17" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -204,9 +202,9 @@
         <option value="$PROJECT_DIR$/mlp/CosineAnnealingTest.py" />
         <option value="$PROJECT_DIR$/mlp/testAdamWeightDecay.py" />
         <option value="$PROJECT_DIR$/mlp/schedulers.py" />
-        <option value="$PROJECT_DIR$/mlp/learning_rules.py" />
         <option value="$PROJECT_DIR$/mlp/optimisers.py" />
         <option value="$PROJECT_DIR$/mlp/testScheduler.py" />
+        <option value="$PROJECT_DIR$/mlp/learning_rules.py" />
       </list>
     </option>
   </component>
@@ -400,10 +398,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.testScheduler" />
+        <item itemvalue="Python.schedulers" />
         <item itemvalue="Python.CosineAnnealingTest" />
         <item itemvalue="Python.learning_rules" />
         <item itemvalue="Python.testAdamWeightDecay" />
-        <item itemvalue="Python.schedulers" />
       </list>
     </recent_temporary>
   </component>
@@ -481,11 +479,6 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mlp/learning_rules.py</url>
-          <line>51</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/mlp/learning_rules.py</url>
           <line>248</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
@@ -502,11 +495,23 @@
       <configuration name="PythonConfigurationType">
         <watch expression="self.layers" language="Python" />
         <watch expression="self.learning_rate" language="Python" />
+        <watch expression="self.eta" language="Python" />
+        <watch expression="alpha_t" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>alpha_t</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.eta</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>self.learning_rate</expression-string>
         <language-id>Python</language-id>
@@ -610,13 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mlp/learning_rules.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1650">
-          <caret line="343" column="45" lean-forward="true" selection-start-line="343" selection-start-column="45" selection-end-line="343" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mlp/optimisers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -636,15 +634,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mlp/schedulers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-917">
-          <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+        <state relative-caret-position="290">
+          <caret line="101" column="13" lean-forward="true" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mlp/learning_rules.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="355" column="36" selection-start-line="355" selection-start-column="36" selection-end-line="355" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mlp/testScheduler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="98" column="28" selection-start-line="98" selection-start-column="28" selection-end-line="98" selection-end-column="28" />
+        <state relative-caret-position="338">
+          <caret line="94" column="17" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
         </state>
       </provider>
     </entry>

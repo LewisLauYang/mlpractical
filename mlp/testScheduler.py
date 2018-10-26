@@ -9,7 +9,7 @@ from mlp.layers import AffineLayer, SoftmaxLayer, SigmoidLayer, ReluLayer, Leaky
 from mlp.errors import CrossEntropySoftmaxError
 from mlp.models import MultipleLayerModel
 from mlp.initialisers import ConstantInit, GlorotUniformInit
-from mlp.learning_rules import AdamLearningRule,GradientDescentLearningRule,RMSPropLearningRule
+from mlp.learning_rules import AdamLearningRule,GradientDescentLearningRule,RMSPropLearningRule,AdamLearningRuleWithWeightDecay
 from mlp.optimisers import Optimiser
 from mlp.schedulers import CosineAnnealingWithWarmRestarts
 
@@ -84,7 +84,7 @@ model = MultipleLayerModel([
     AffineLayer(hidden_dim, output_dim, weights_init, biases_init)
 ])
 
-sgd_scheduler = CosineAnnealingWithWarmRestarts(min_learning_rate=0.03, max_learning_rate=0,
+sgd_scheduler = CosineAnnealingWithWarmRestarts(min_learning_rate=0, max_learning_rate=0.003,
                                                        total_iters_per_period=25,
                                                        max_learning_rate_discount_factor=0.9,
                                                        period_iteration_expansion_factor=3.0)
@@ -92,7 +92,7 @@ sgd_scheduler = CosineAnnealingWithWarmRestarts(min_learning_rate=0.03, max_lear
 error = CrossEntropySoftmaxError()
 
 # Use a basic gradient descent learning rule
-learning_rule = AdamLearningRule(learning_rate=learning_rate)
+learning_rule = AdamLearningRuleWithWeightDecay(learning_rate=learning_rate)
 
 #Remember to use notebook=False when you write a script to be run in a terminal
 _ = train_model_and_plot_stats(
