@@ -353,7 +353,10 @@ class AdamLearningRuleWithWeightDecay(GradientDescentLearningRule):
             else:
                 alpha_t = self.learning_rate * (1. - self.beta_2 ** (self.step_count + 1)) ** 0.5 / (
                             1. - self.beta_1 ** (self.step_count + 1))
-                param -=  self.eta * (alpha_t * (mom_1 / (mom_2 ** 0.5 + self.epsilon) + self.weight_decay * param))
+
+                mt = mom_1 / (1 - pow(self.beta_1,self.step_count + 1))
+                vt = mom_2 / (1 - pow(self.beta_2,self.step_count + 1))
+                param -=  self.eta * ((self.learning_rate * mt) / (vt ** 0.5 + self.epsilon) + self.weight_decay * param)
         self.step_count += 1
 
 
