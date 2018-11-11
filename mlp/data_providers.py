@@ -208,7 +208,7 @@ class EMNISTDataProvider(DataProvider):
     """Data provider for EMNIST handwritten digit images."""
 
     def __init__(self, which_set='train', batch_size=100, max_num_batches=-1,
-                 shuffle_order=True, rng=None):
+                 shuffle_order=True, rng=None, flatten=False):
         """Create a new EMNIST data provider object.
 
         Args:
@@ -243,7 +243,10 @@ class EMNISTDataProvider(DataProvider):
         print(loaded.keys())
         inputs, targets = loaded['inputs'], loaded['targets']
         inputs = inputs.astype(np.float32)
-        inputs = np.reshape(inputs, newshape=(-1, 28*28))
+        if flatten:
+            inputs = np.reshape(inputs, newshape=(-1, 28*28))
+        else:
+            inputs = np.reshape(inputs, newshape=(-1, 1, 28, 28))
         inputs = inputs / 255.0
         # pass the loaded data to the parent class __init__
         super(EMNISTDataProvider, self).__init__(
