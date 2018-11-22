@@ -451,16 +451,15 @@ class ConvolutionalLayer(LayerWithParameters):
         """
 
         batch_size = inputs.shape[0]
-
         output_height = self.input_height - self.kernel_height + 1
         output_width = self.input_width - self.kernel_width + 1
-
-        outputs = np.zeros((batch_size, self.num_output_channels, output_height, output_width))
+        output = np.zeros((batch_size, self.num_output_channels, output_height, output_width))
         for i in range(batch_size):
             for j in range(self.num_output_channels):
                 for k in range(self.num_input_channels):
-                    outputs[i, j, :, :] += convolve2d(inputs[i, k, :, :], self.kernels[j, k, :, :], mode='valid')
-        outputs = outputs + self.biases[np.newaxis, :, np.newaxis, np.newaxis]
+                    output[i, j, :, :] += convolve2d(inputs[i, k, :, :], self.kernels[j, k, :, :],mode='valid')
+        outputs = output + self.biases[np.newaxis, :, np.newaxis, np.newaxis]
+
         return outputs
 
 
@@ -482,16 +481,16 @@ class ConvolutionalLayer(LayerWithParameters):
             Array of gradients with respect to the layer inputs of shape
             (batch_size, num_input_channels, input_height, input_width).
         """
-
         batch_size = inputs.shape[0]
-        kernels_rot = np.transpose(np.rot90(np.transpose(self.kernels), k=2))
-        grads_wrt_inputs = np.zeros((batch_size, self.num_input_channels, self.input_height, self.input_width))
+        kernels = np.transpose(np.rot90(np.transpose(self.kernels), k=2))
+        input_height = self.input_height
+        input_width = self.input_width
+        output = np.zeros((batch_size, self.num_input_channels, input_height, input_width))
         for i in range(batch_size):
             for j in range(self.num_output_channels):
                 for k in range(self.num_input_channels):
-                    grads_wrt_inputs[i, k, :, :] += convolve2d(grads_wrt_outputs[i, j, :, :], kernels_rot[j, k, :, :],
-                                                               mode='full')
-        return grads_wrt_inputs
+                    output[i, k, :, :] += convolve2d(grads_wrt_outputs[i, j, :, :], kernels[j, k, :, :],mode='full')
+        return output
 
 
     def grads_wrt_params(self, inputs, grads_wrt_outputs):
@@ -508,13 +507,12 @@ class ConvolutionalLayer(LayerWithParameters):
 
         grads_wrt_kernels = np.zeros_like(self.kernels)
         batch_size = inputs.shape[0]
-        inputs_rot = np.transpose(np.rot90(np.transpose(inputs), k=2))
+        inputs = np.transpose(np.rot90(np.transpose(inputs), k=2))
         for i in range(batch_size):
             for j in range(self.num_output_channels):
                 for k in range(self.num_input_channels):
-                    grads_wrt_kernels[j, k, :, :] += convolve2d(inputs_rot[i, k, :, :], grads_wrt_outputs[i, j, :, :],
-                                                                mode="valid")
-        grads_wrt_biases = np.sum(grads_wrt_outputs, axis=(0, 2, 3))
+                    grads_wrt_kernels[j, k, :, :] += convolve2d(inputs[i, k, :, :], grads_wrt_outputs[i, j, :, :],mode="valid")
+        grads_wrt_biases = np.sum(grads_wrt_outputs, axis=(0, -2, -1))
         return [grads_wrt_kernels, grads_wrt_biases]
 
 

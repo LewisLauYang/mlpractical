@@ -5,6 +5,9 @@
 
 \documentclass{article}
 \input{mlp2018_includes}
+\usepackage{url}
+\usepackage{graphicx} 
+\usepackage{float}
 
 %% You probably do not need to change anything above this comment
 
@@ -34,7 +37,92 @@ The introduction should place your work in context, giving the overall motivatio
 This section should also include a concise description of the Balanced EMNIST task and  data -- be precise: for example state the size of the training, validation, and test sets.  
 
 \section{Implementing convolutional networks} 
-Concisely explain the idea of convolutional layers and pooling layers, and explain how you did the implementation.  There is no need to include chunks of code.  You may also discuss the pros and cons of different approaches to implementing convolutional layers, in terms of computational efficiency (running time, storage demands), and any analysis of your own implementation.
+
+Traditional neural networks use matrix multiplication to establish the connection between input and output, while convolutional neural networks use convolution to describe the relationship between input and output.
+A convolutional neural network generally consists of five kinds of layers: input layers,convolutional layers, detector stage, pooling layers and  full connected layers. Below we will focus on the convolutional layers and the pooling layers.
+
+\subsection{Convolutional layer}
+
+Compared to the traditional fully connected layer, the convolution layer is faster and requires less storage space because the convolution layer has two features of sparse interactions and parameter sharing.
+
+\textbf{sparse interactions}\\
+Traditional neural networks have a relationship between each input and each output, whereas an output of a convolutional network only has a relationship with a portion of the input.This feature is achieved by making the size of the kernel much smaller than the size of the input.\cite{deeplearning2016}.
+
+\textbf{parameter sharing}\\
+In a model, the same set of parameters is used multiple times in multiple functions.\cite{deeplearning2016}.
+This means that pixels in different positions of the input will operate with the same kernel, learning the same set of parameters.
+
+Taking our experiment as an example, our input is a 28 $\times$ 28 pixel image, and we only need a 3 $\times$ 3 kernel which is used to detect some small meaningful features in the image. The output is a 26 $\times$ 26 feature map(padding = 0, stride = 1).
+
+\begin{table}[H]
+  \centering
+%  \caption{compare convolutional layer with full connected layer}
+    \begin{tabular}{lll}
+          & convolutional layer & full connected layer \\
+    parameters & 3 $\times$ 3 + 1  & 28 $\times$ 28 $\times$ 100  \\
+    hidden units & 26 $\times$ 26 & 100 \\
+    connections & 26 $\times$ 26 $\times$ 3 $\times$ 3 & 28 $\times$ 28 $\times$ 100 \\
+    \end{tabular}%
+  \label{clayertable1}
+\end{table}%
+The number of parameters and connections in the convolutional layer is much smaller than the fully connected layer. And if the stride is increased, the effect will be more significant.This not only reduces storage requirements, but also reduces the amount of computation.
+\subsection{pooling layer}
+Normally, the convolution layer will pass the result to the detector stage (for example Relu) after processing, after which the pooling layer will further adjust the data and pass to next convolution layer.
+The pooling layer has several very important functions\\
+
+\textbf{invariance}\\
+When the input of this layer undergoes a small amount of translation and rotation, the output obtained will not change after being processed by the pooling function\cite{deeplearning2016}.This means that we are more concerned with the existence of a feature rather than the location of the specific feature.This is a very useful feature.For example,For the mnist dataset, because of the handwriting reason, the different number "1" may be in the left-hand side, the right-hand position, or a small amount of rotation relative to the standard one. But after the pooling function, the "1" they showed was consistent.
+
+\textbf{Reduce the input of next layer}\\
+Each area entered will perform pooling functions (such as max pooling, average pooling, etc.) to further extract features, reduce input dimensions, and output smaller dimensions.
+\begin{figure}[H] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+		\centering %图片居中
+		\includegraphics[width=0.4\textwidth]{./pic/part1/maxpool.jpeg} %插入图片，[]中设置图片大小，{}中是图片文件名
+		\caption{Maxpooling} %最终文档中希望显示的图片标题
+		\label{Fig.main2} %用于文内引用的标签
+		\cite{cs231n}
+\end{figure}
+This image shows that After max pooling, the input has been reduced from 4 $\times$ 4 to 2 $\times$ 2.
+It is precisely because the pooling function further extracts features that there are two effective functions. One is to enhance the fitting. Because the features are more obvious, the model is easier to learn the main features, and the generalization ability is strengthened. The other is to prevent over-fitting, because during the extraction process, only the main features are retained, and some relatively weak features are lost, which can prevent the model from over-fitting.
+
+\subsection{Implementation}
+
+\textbf{Convolutional layer}\\
+The method I use is convolve2d. With this convolution method, we only need to find the input location and kernels, and then perform the convolution calculation. Of course, we also need to consider the input channel and output channel.
+\begin{figure}[H] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+	\centering %图片居中
+	\includegraphics[width=0.45\textwidth]{./pic/part1/cnlayerImp.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+	\caption{convoluation layer implementation} %最终文档中希望显示的图片标题
+	\label{Fig.main2} %用于文内引用的标签
+	\cite{cs231n}
+\end{figure}
+The same is true for my implementation. I create 3 loops corresponding to batch  size, input channel and output channel, then find the input matrix of the image and the kernel matrix for convolution. After that, because there are multiple channels, I need to accumulate.For backpropagation, the implementation is similar, but it becomes the output weight and the kernel performs the convolution operation, but the kernel needs to be transposed first. For the grads wrt params function, we need input and output weights for convolution, but we need to transpose the inputs matrix first.\\
+
+\textbf{Pooling layer}\\
+The pooling algorithm I implemented is max pooling.
+\begin{figure}[H] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+	\centering %图片居中
+	\includegraphics[width=0.5\textwidth]{./pic/part1/mpImpfprop.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+	\caption{maxpooling forward propagation implementation} %最终文档中希望显示的图片标题
+	\label{Fig.main2} %用于文内引用的标签
+\end{figure}
+For the following figure, the input data X is 4*4, the sampling core size is 2, stride is 2, and no padding. The input data size is similar to the convolutional layer calculation method (input-width+2$\times$pad-pool-size)/stride+1. Forward propagation not only calculates the maximum value in the pool area, but also records the position in the input data of the maximum value. The purpose is to pass the gradient value to the position where the corresponding maximum value is in the backpropagation.
+So for the backpropagation,It is known by forwardpropagation that the gradient value corresponds to the maximum position of the output of the previous layer. The specific process is as follows:
+\begin{figure}[H] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+	\centering %图片居中
+	\includegraphics[width=0.5\textwidth]{./pic/part1/mpImpBprop.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+	\caption{maxpooling backpropagation implementation} %最终文档中希望显示的图片标题
+	\label{Fig.main2} %用于文内引用的标签
+\end{figure}
+\subsection{Different approaches to implementing convolutional layers}
+Here we will discuss three algorithms which are used for convolutional layer calculations, namely, correlate2d, im2col and Fast Fourier Transforms.
+Correlate2d is a traditional convolution algorithm, although there is no advantage in speed compared to the other two, but in storage, no additional storage requirements are required.
+
+Im2col is the multiplication of the convolution calculation into two matrices: 1. Convert the image into a matrix using im2col; 2. Convert the convolution kernel into a matrix using im2col; 3. Multiply the matrix from the first two steps.If stride < kernel size, then a large number of repeating pixels will be included in the matrix after the conversion, which is a big drain for memory. This is an obvious disadvantage of im2col for convolution operations, but this shortcoming is negligible compared to the speed gain of multiplying large matrices.
+
+The process using the Fourier algorithm is such that the convolution in the time domain is equal to the product in the frequency domain, so after transforming our image (input) and kernel into the frequency domain, we multiply them directly, and then Transform back to the time domain. This completes the convolution operation.Because the size of a general convolution kernel is smaller than the image, we need to extend our kernel to match the size of the image.So you need to use the loop fill method to expand the convolution kernel so that the last two signals can be the same size when multiplied.The advantage of convolution calculations in the above manner is obvious - greatly reducing the amount of computation for direct convolution operations in the time domain.The disadvantages are also very obvious, because in a general convolutional neural network, the kernel is much smaller than the input, so additional memory space is needed when converting the kernel. Fourier's multiplication calculation is more complicated.
+
+In summary, although im2col requires more memory space, it has an advantage in speed. Traditional convolution operations do not require extra memory space, but there is no advantage in speed. The memory space required by the Fourier algorithm and the efficiency of the algorithm are closely related to the size of kernal. When the core is large, the memory requirement is small, and the algorithm is efficient, and vice versa.
 
 \section{Context in convolutional networks}
 This section should introduce the main part of the report which is to do with exploring different ways of modelling context in convolutional networks.  This section should present, in your own words, the different approaches you have adopted, explaining how they work and what the key differences between them are.  You may reference the literature where appropriate.   You should also outline the key research questions that you have addressed in this work.
