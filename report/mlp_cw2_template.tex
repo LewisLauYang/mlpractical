@@ -33,7 +33,7 @@ Deep learning shines in the field of computer vision, and many problems that can
 \section{Introduction}
 \label{sec:intro}
 
-This report will discuss two parts. The first part is to explain the convolutional neural network. It mainly explains the convolutional layer and the pooling layer, and then reports the principle of implementing the two layers. Finally, it compares the advantages and disadvantages of different implementations of the convolution algorithm in the convolutional layer.In the second part, we will focus on the downsampling operation after the convolutional layer. In the classical convolutional neural network, after the general convolutional layer is processed, it will be handed over to the pooling layer for downsampling operation. The algorithm of the pooling layer is very much, classic and common are max pooling and average pooling. The role of the pooling layer is to reduce parameters and extract important features, thereby preventing network overfitting and improving the generalization ability of the network. However, relative to the downsampling of the pooling layer, the dilated convolution removes the pooled downsampling operation without reducing the network's receptive field. We will compare these two downsampling techniques in terms of accuracy, memory requirements, and fitting speed.The experiment used a variant of the NIST dataset, which we call Extended MNIST (EMNIST), which follows the same transformation paradigm as used when creating the MNIST dataset. The result is a series of data sets that make up more challenging classification tasks involving letters and numbers, and they have the same image structure and parameters as the original MNIST task, allowing for all existing classifiers and systems. 
+This report will discuss two parts. The first part is to explain the convolutional neural network. It mainly explains the convolutional layer and the pooling layer, and then reports the principle of implementing the two layers. Finally, it compares the advantages and disadvantages of different implementations of the convolution algorithm in the convolutional layer.In the second part, we will focus on the downsampling operation after the convolutional layer. In the classical convolutional neural network, after the general convolutional layer is processed, it will be handed over to the pooling layer for downsampling operation. The classic and common algorithm of the pooling layer  are max pooling and average pooling. The role of the pooling layer is to reduce parameters and extract important features, thereby preventing network overfitting and improving the generalization ability of the network. However, relative to the downsampling of the pooling layer, the dilated convolution removes the pooled downsampling operation without reducing the network's receptive field. We will compare these two downsampling techniques in terms of accuracy, memory requirements, and fitting speed.The experiment used a variant of the NIST dataset, which we call Extended MNIST (EMNIST), which follows the same transformation paradigm as used when creating the MNIST dataset. The result is a series of data sets that make up more challenging classification tasks involving letters and numbers, and they have the same image structure and parameters as the original MNIST task, allowing for all existing classifiers and systems. 
 
 \section{Implementing convolutional networks} 
 
@@ -79,7 +79,7 @@ The method I use is convolve2d. With this convolution method, we only need to fi
 	\label{Fig.main2} %用于文内引用的标签
 	\cite{cs231n}
 \end{figure}
-The same is true for my implementation. I create 3 loops corresponding to batch  size, input channel and output channel, then find the input matrix of the image and the kernel matrix for convolution. After that, because there are multiple channels, I need to accumulate.For backpropagation, the implementation is similar, but it becomes the output weight and the kernel performs the convolution operation, but the kernel needs to be transposed first. For the grads wrt params function, we need input and output weights for convolution, but we need to transpose the inputs matrix first.\\
+The same is true for my implementation. I create 3 loops corresponding to batch  size, input channel and output channel, then find the input matrix of the image and the kernel matrix for convolution. After that, because there are multiple channels, I need to accumulate.For backpropagation, the implementation is similar, but it becomes the output weight and the kernel performs the convolution operation, but the kernel needs to be transposed first. For the grads wrt params function, we need input and output weights for convolution, but we need to transpose the inputs matrix first. In addition, the output of grads wrt params function should include the biases.\\
 
 \textbf{Pooling layer}\\
 The pooling algorithm I implemented is max pooling.
@@ -89,7 +89,7 @@ The pooling algorithm I implemented is max pooling.
 	\caption{maxpooling forward propagation implementation} %最终文档中希望显示的图片标题
 	\label{Fig.main2} %用于文内引用的标签
 \end{figure}
-For the following figure, the input data X is 4*4, the sampling core size is 2, stride is 2, and no padding. The input data size is similar to the convolutional layer calculation method (input-width+2$\times$pad-pool-size)/stride+1. Forward propagation not only calculates the maximum value in the pool area, but also records the position in the input data of the maximum value. The purpose is to pass the gradient value to the position where the corresponding maximum value is in the backpropagation.
+For the following figure, the input data X is 4*4, the sampling core size is 2, stride is 2, and no padding. The input data size is similar to the convolutional layer calculation method (input\_width + 2 $\times$ pad - pool\_size) / stride + 1. Forward propagation not only calculates the maximum value in the pool area, but also records the position in the input data of the maximum value. The purpose is to pass the gradient value to the position where the corresponding maximum value is in the backpropagation.
 So for the backpropagation,It is known by forwardpropagation that the gradient value corresponds to the maximum position of the output of the previous layer. The specific process is as follows:
 \begin{figure}[H] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
 	\centering %图片居中
@@ -98,7 +98,7 @@ So for the backpropagation,It is known by forwardpropagation that the gradient v
 	\label{Fig.main2} %用于文内引用的标签
 \end{figure}
 \subsection{Different approaches to implementing convolutional layers}
-Here we will discuss three algorithms which are used for convolutional layer calculations, namely, correlate2d, im2col and Fast Fourier Transforms.
+Here we will discuss three algorithms which are used for convolutional layer calculations:correlate2d, im2col and Fast Fourier Transforms.
 Correlate2d is a traditional convolution algorithm, although there is no advantage in speed compared to the other two, but in storage, no additional storage requirements are required.
 
 Im2col is the multiplication of the convolution calculation into two matrices: 1. Convert the image into a matrix using im2col; 2. Convert the convolution kernel into a matrix using im2col; 3. Multiply the matrix from the first two steps.If stride < kernel size, then a large number of repeating pixels will be included in the matrix after the conversion, which is a big drain for memory. This is an obvious disadvantage of im2col for convolution operations, but this shortcoming is negligible compared to the speed gain of multiplying large matrices.
@@ -109,7 +109,7 @@ In summary, although im2col requires more memory space, it has an advantage in s
 
 \section{Context in convolutional networks}
 
-The pooling layer is a very important layer in the neural network, which not only can further extract features, but also reduce the dimensions of the next input. The first experiment in this study was to study the different performance of the two methods of average pooling and max pooling in convolutional neural networks. Here we need to understand the pooling layer more deeply.
+The pooling layer is a very important layer in the neural network, which not only can further extract features, but also reduce the dimensions of the next input. The first experiment in this study was to study the different performance of the two methods of average pooling and max pooling in convolutional neural networks.Pooling layer have two important features:invariance and reduce parameters.
 
 \subsection{pooling layer}
 
@@ -126,11 +126,11 @@ Each area entered will perform pooling functions (such as max pooling, average p
 	\cite{cs231n}
 \end{figure}
 This image shows that After max pooling, the input has been reduced from 4 $\times$ 4 to 2 $\times$ 2.
-It is precisely because the pooling function further extracts features that there are two effective functions. One is to enhance the fitting. Because the features are more obvious, the model is easier to learn the main features, and the generalization ability is strengthened. The other is to prevent over-fitting, because during the extraction process, only the main features are retained, and some relatively weak features are lost, which can prevent the model from over-fitting.
+It is precisely because the pooling function further extracts features that there are two effective functions. One is to enhance the fitting. Because the features are more obvious, the model is easier to learn the main features, and the generalization ability is strengthened. The other is to prevent over-fitting, because during the extraction process, only the main features are retained, and some relatively weak features are lost, which can prevent the model from over-fitting\cite{DumoulinVincent2016Agtc}.
 
 \subsection{Dilated convolution}
 
-The second experiment I will compare two kinds of method of downsampling,average pooling and dilated convolution.
+The second experiment I will compare two kinds of method of downsampling:average pooling and dilated convolution.
 
 When the image is compressed in digital image processing, the matrix of N$\times$N becomes (N/2)$\times$(N/2). This step is to downsample the original image.In convolutional neural networks, average pooling is a downsampling method that compresses images and reduces input matrices.
 
@@ -168,29 +168,6 @@ In this experiment we used We use a structure similar to the LeNet neural networ
 In this report we will change two hyperparameters: convolution layer and filters
 
 \subsection{Compare max pooling and average pooling}
-\begin{table}[htbp]
-  \centering
-  \caption{Constant hyperparameter}
-    \begin{tabular}{lr}
-    \textbf{Constant hyperparameter} & \ \textbf{value} \\
-    batch\_size & 100 \\
-    number of epoch & 100 \\
-    number of imageChannel & 1 \\
-    weight decay for Adam & 1.00E-05 \\
-    \end{tabular}%
-  \label{tab:addlabel}%
-\end{table}%
-
-\begin{table}[htbp]
-  \centering
-  \caption{Changed hyperparameter}
-    \begin{tabular}{ll}
-    \textbf{Changed hyperparameter} & \textbf{value range} \\
-    number of layers & [1,2,3,4] \\
-    filters & [2,3] \\
-    \end{tabular}%
-  \label{tab:addlabel}%
-\end{table}%
 In order to compare the accuracy, the fiiting time and computing time of max pooling and average pooling, the number of convolution layers I chose from layer 1 to layer 4, because the number of convolution layers in LeNet was two layers, the effect is quite good. I believe that the 4-layer convolution layer is sufficient for this data set. Moreover, the input itself is not large (784 pixel data). After multiple pooling layer dimensional reduction, the final dimension will become very small.
 \begin{figure}[H] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
 	\centering %图片居中
@@ -204,7 +181,7 @@ In order to compare the accuracy, the fiiting time and computing time of max poo
 	\caption{Loss of different layers with filter = 64} %最终文档中希望显示的图片标题
 	\label{Fig.main2} %用于文内引用的标签
 \end{figure}
-From the graph of accuracy, we can see that when the layer is 1, the accuracy of max pooling will be higher than that of average pooling, but the overall accuracy of layer is not high, which is an under-fitting model..When the layer is 2, the model learning is good. At this time, you can see that the accuracy of max pooling and average pooling is not much different. When layer=3, max pooling has an overfitting situation, so the accuracy of average pooling is much better than max pooling. When the layer is 4, both models have over-fitting, so the accuracy is not high.Because there are different degrees of overfitting in layer=3 and layer=4, we reduce the filter to 32 and revisit the max pooling and average pooling cases.
+From the graph of accuracy, we can see that when the layer is 1, the accuracy of max pooling will be higher than that of average pooling, which is an under-fitting model.When the layer is 2, the model learning is good and you can see that the accuracy of max pooling and average pooling is not much different. Because there are different degrees of overfitting in layer=3 and layer=4, we reduce the filter to 32 and revisit the max pooling and average pooling cases.
 
 
 \begin{figure}[H] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
@@ -327,8 +304,8 @@ As can be seen from the table, the dilated convolution runs much longer than the
 
 For the algorithm selection of the convolutional layer, the traditional naive convolution algorithm does not require additional, but the direct convolution calculation is not satisfactory in speed. Especially for deeper networks, larger pictures. Faced with massive parameters and a large number of convolution operations, the simple algorithm can not cope with it.On the contrary, although im2col requires more memory space, the speed increase is also very obvious. In the real world, we can increase the memory space relatively easily, but it is very difficult to increase the calculation speed, so it is acceptable to sacrifice space for cooking time. So most of the deep learning frameworks use this convolution algorithm now, which also verifies the validity and generality of this algorithm from the side.
 The biggest reason why the Fourier algorithm can't be mainstream is that it needs to convert the kernel to the same size as input. In reality, in order to reduce the parameters and speed up the calculation, the size of the kernel is much smaller than the input. This causes the kernel to require more memory space during the conversion process, and the conversion efficiency is also low. However, if the size of the kernel is not very small, the Fourier algorithm is much more efficient than the traditional simple convolution algorithm\cite{deeplearning2016}.\\
-In this experiment, the best accuracy of average pooling (0.88) is higher than max pooling (0.874). The overall accuracy rate is also higher than the max pooling. The reason I think is this: when extracting information, when pooling, if you take the mean-pooling, you can always retain the characteristics of the overall data, and can highlight the background information, and if you take the maximum value of the region ( Max-pooling), it is better to retain the features on the texture. Because the images of EMNIST are all black and white, the background features are better, and max pooling may lose some features when selecting the largest feature. In the real world, we are faced with colored images. The way max pooling selects texture features makes it easier to find important features of the image.In terms of fitting speed, because max pooling selects the region maximum, and average pooling selects the region average. The max pooling method is more direct and easier to select the largest feature, so max pooling fits much faster than average.\\
-This is a discussion about average pooling and dilated convolution. Both are methods of downsampling. The downsampling method is mainly to reduce the parameters. For the receptive field, the average pooling does not change, and the dilated convolution can expand the receptive field with the increase of the level. The big receptive field allows the network to learn more features, so you can see that the accuracy of the classified convolution (0.885) is better than the average pooling (0.880). Receptive field expansion, learning more features, can also speed up the fitting speed. However, this also brings some problems. When the receptive field expands, more features are learned. This may bring about an over-fitting problem. And the expansion of the receptive field will increase the amount of calculation, so we see that each dilated convolution runs much slower than the average pooling.
+In this experiment, the best accuracy of average pooling (0.88) is higher than max pooling (0.874). The overall accuracy rate is also higher than the max pooling. The reason I think is this: when extracting information, when pooling, if you take the mean-pooling, you can always retain the characteristics of the overall data, and can highlight the background information, and if you take the maximum value of the region ( Max-pooling), it is better to retain the features on the texture\cite{BoureauY-Lan2010Lmff}. Because the images of EMNIST are all black and white, the background features are better, and max pooling may lose some features when selecting the largest feature. In the real world, we are faced with colored images. The way max pooling selects texture features makes it easier to find important features of the image.In terms of fitting speed, because max pooling selects the region maximum, and average pooling selects the region average. The max pooling method is more direct and easier to select the largest feature, so max pooling fits much faster than average.\\
+This is a discussion about average pooling and dilated convolution. Both are methods of downsampling. The downsampling method is mainly to reduce the parameters. For the receptive field, the average pooling does not change, and the dilated convolution can expand the receptive field with the increase of the level\cite{DumoulinVincent2016Agtc}. The big receptive field allows the network to learn more features, so you can see that the accuracy of the classified convolution (0.885) is better than the average pooling (0.880). Receptive field expansion, learning more features, can also speed up the fitting speed. However, this also brings some problems. When the receptive field expands, more features are learned. This may bring about an over-fitting problem. And the expansion of the receptive field will increase the amount of calculation, so we see that each dilated convolution runs much slower than the average pooling.
 
 
 

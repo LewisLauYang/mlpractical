@@ -1,14 +1,26 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Boureau et~al.(2010)Boureau, Bach, Lecun, and
+  Ponce]{BoureauY-Lan2010Lmff}
+Boureau, Y-Lan, Bach, Francis, Lecun, Yann, and Ponce, Jean.
+\newblock Learning mid-level features for recognition.
+\newblock pp.\  2559--2566. IEEE Publishing, 2010.
+\newblock ISBN 978-1-4244-6984-0.
+
 \bibitem[CS231n()]{cs231n}
 CS231n.
 \newblock Cs231n convolutional neural networks for visual recognition.
 \newblock \url{http://cs231n.github.io/convolutional-networks/}.
+
+\bibitem[Dumoulin \& Visin(2016)Dumoulin and Visin]{DumoulinVincent2016Agtc}
+Dumoulin, Vincent and Visin, Francesco.
+\newblock A guide to convolution arithmetic for deep learning.
+\newblock 2016.
 
 \bibitem[Goodfellow(2016)]{deeplearning2016}
 Goodfellow, Ian.
@@ -22,13 +34,6 @@ Jia, Yangqing.
 \newblock Learning semantic image representations at a large scale.
 \newblock 2014.
 \newblock URL \url{http://www.escholarship.org/uc/item/64c2v6sn}.
-
-\bibitem[Langley(2000)]{langley00}
-Langley, P.
-\newblock Crafting papers on machine learning.
-\newblock In Langley, Pat (ed.), \emph{Proceedings of the 17th International
-  Conference on Machine Learning (ICML 2000)}, pp.\  1207--1216, Stanford, CA,
-  2000. Morgan Kaufmann.
 
 \bibitem[Lecun et~al.(1998)Lecun, Bottou, Bengio, and Haffner]{LecunY.1998Glat}
 Lecun, Y., Bottou, L., Bengio, Y., and Haffner, P.
