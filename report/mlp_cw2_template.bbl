@@ -1,0 +1,46 @@
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[CS231n()]{cs231n}
+CS231n.
+\newblock Cs231n convolutional neural networks for visual recognition.
+\newblock \url{http://cs231n.github.io/convolutional-networks/}.
+
+\bibitem[Goodfellow(2016)]{deeplearning2016}
+Goodfellow, Ian.
+\newblock \emph{Deep learning}.
+\newblock Adaptive computation and machine learning. The MIT Press, Cambridge,
+  Massachusetts, 2016.
+\newblock ISBN 0262035618.
+
+\bibitem[Jia(2014)]{JiaYangqing2014LSIR}
+Jia, Yangqing.
+\newblock Learning semantic image representations at a large scale.
+\newblock 2014.
+\newblock URL \url{http://www.escholarship.org/uc/item/64c2v6sn}.
+
+\bibitem[Langley(2000)]{langley00}
+Langley, P.
+\newblock Crafting papers on machine learning.
+\newblock In Langley, Pat (ed.), \emph{Proceedings of the 17th International
+  Conference on Machine Learning (ICML 2000)}, pp.\  1207--1216, Stanford, CA,
+  2000. Morgan Kaufmann.
+
+\bibitem[Lecun et~al.(1998)Lecun, Bottou, Bengio, and Haffner]{LecunY.1998Glat}
+Lecun, Y., Bottou, L., Bengio, Y., and Haffner, P.
+\newblock Gradient-based learning applied to document recognition.
+\newblock \emph{Proceedings of the IEEE}, 86\penalty0 (11):\penalty0
+  2278--2324, 1998.
+\newblock ISSN 0018-9219.
+
+\bibitem[Yu \& Koltun(2015)Yu and Koltun]{DBLP:journals/corr/YuK15}
+Yu, Fisher and Koltun, Vladlen.
+\newblock Multi-scale context aggregation by dilated convolutions.
+\newblock \emph{CoRR}, abs/1511.07122, 2015.
+\newblock URL \url{http://arxiv.org/abs/1511.07122}.
+
+\end{thebibliography}

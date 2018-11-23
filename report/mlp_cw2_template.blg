@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: mlp_cw2_template.aux
+The style file: icml2017.bst
+Database file #1: example-refs.bib
+Warning--empty year in cs231n
+Warning--empty journal in JiaYangqing2014LSIR
+You've used 6 entries,
+            2773 wiz_defined-function locations,
+            642 strings with 5876 characters,
+and the built_in function-call counts, 2508 in all, are:
+= -- 234
+> -- 104
+< -- 6
++ -- 37
+- -- 31
+* -- 168
+:= -- 392
+add.period$ -- 24
+call.type$ -- 6
+change.case$ -- 27
+chr.to.int$ -- 6
+cite$ -- 14
+duplicate$ -- 128
+empty$ -- 223
+format.name$ -- 39
+if$ -- 533
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 6
+newline$ -- 42
+num.names$ -- 26
+pop$ -- 60
+preamble$ -- 1
+purify$ -- 22
+quote$ -- 0
+skip$ -- 98
+stack$ -- 0
+substring$ -- 83
+swap$ -- 16
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 61
+warning$ -- 2
+while$ -- 24
+width$ -- 0
+write$ -- 92
+(There were 2 warnings)
